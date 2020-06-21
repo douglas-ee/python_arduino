@@ -20,7 +20,7 @@ void loop()
         if (eixo == 'x')
         {
             delay(10);
-            bytelido = Serial.read();
+            byte_lido = Serial.read();
             x_servo.write(byte_lido); // Passa para o x_servo o valor de bytelido.
         }
     }
