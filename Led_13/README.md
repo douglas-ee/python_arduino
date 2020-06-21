@@ -13,9 +13,11 @@
 ### Imagem:
 
 ![](files/print_program.png)
+
 **Figura: Programas**
 
 ### Video:
 
 ![](files/gif_led.gif)
+
 **Video: Placa acendendo o Led13**

@@ -22,6 +22,7 @@ def esc_porta():
         print("Digite:\n")
         valor = (
             raw_input("1 - Acender led.\n2 - Desligar led.\n"))
+        #print (valor.portstr)
         Obj_porta = serial.Serial(porta, baud_rate)
         Obj_porta.write(valor)
         ler_porta()
