@@ -8,7 +8,7 @@ void setup()
 {
     Serial.begin(9600);
     x_servo.attach(9);
-    x_servo.write(0); // posiciona x_servo no angulo zero grau.
+    x_servo.write(90); // posiciona x_servo no angulo zero grau.
 }
 
 void loop()

@@ -7,96 +7,87 @@
 # Email: douglas.gomes@ee.ufcg.edu.br #
 #######################################
 
-# Informe qual a porta conectada
 import time
 import serial
 from Tkinter import *
 porta = '/dev/ttyUSB0'
 baud_rate = 9600
 
-
-# Configuração da porta serial
-
-# Define porta e velocidade de comunicação
 ser = serial.Serial(porta, baud_rate)
-print ser.portstr  # Imprime a porta em uso
+print ser.portstr
 print ('aguarde, incializando a porta...')
-time.sleep(3)  # Aguarda 3 segundos
+time.sleep(3)
 
 
-def y_axis(valor):  # Funcão que envia o valor do slide Y para a porta serial
-    ser.write('y')
+def um_axis(valor):  # Funcão que envia o valor do slide 1 para a porta serial
+    ser.write('1')
     # Converte a variável valor de str para int e de int para char ( byte )
     ser.write(chr(int(valor)))
 
 
-def x_axis(valor):  # Funcão que envia o valor do slide X para a porta serial
-    ser.write('x')
-    # Converte a variável valor de str para int e de int para char ( byte )
+def dois_axis(valor):
+    ser.write('2')
     ser.write(chr(int(valor)))
 
-def w_axis(valor):  # Funcão que envia o valor do slide X para a porta serial
-    ser.write('w')
-    # Converte a variável valor de str para int e de int para char ( byte )
+
+def tres_axis(valor):
+    ser.write('3')
     ser.write(chr(int(valor)))
 
-def q_axis(valor):  # Funcão que envia o valor do slide X para a porta serial
-    ser.write('q')
-    # Converte a variável valor de str para int e de int para char ( byte )
+
+def quatro_axis(valor):
+    ser.write('4')
     ser.write(chr(int(valor)))
 
-def r_axis(valor):  # Funcão que envia o valor do slide X para a porta serial
-    ser.write('r')
-    # Converte a variável valor de str para int e de int para char ( byte )
+
+def cinco_axis(valor):
+    ser.write('5')
     ser.write(chr(int(valor)))
 
-def s_axis(valor):  # Funcão que envia o valor do slide X para a porta serial
-    ser.write('s')
-    # Converte a variável valor de str para int e de int para char ( byte )
+
+def seis_axis(valor):
+    ser.write('6')
     ser.write(chr(int(valor)))
 
-def sair():  # Função que destrói a Janela principal, antes fecha a porta serial
-    ser.close()  # Fecha a porta serial
+
+def sair():
+    ser.close()
     print('Fechando a porta serial...')
     time.sleep(1)
     print('Fechando a janela..')
     time.sleep(1)
-    root.destroy()  # Destrói a janela
-
-# processo de criação da UI com TKinter
+    root.destroy()
 
 
 root = Tk()  # Cria a janela
 root.title('Servo Motor Arduino Control')  # Define o títula da janela
 root.geometry('280x280')  # Define o tamanho
 
-# Cria um objeto Scale que pode varia de 0 a 179, e associa-o à função y_axis
+scale = Scale(root, from_=95, to=130, command=um_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
-scale = Scale(root, from_=0, to=179, command=y_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
+scale = Scale(root, from_=0, to=179, command=dois_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
-# Cria um objeto Scale ( Horizontal ) que pode varia de 0 a 179, e associa-o à função x_axis
+scale = Scale(root, from_=0, to=179, command=tres_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
-scale = Scale(root, from_=0, to=179, command=x_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
+scale = Scale(root, from_=40, to=145, command=quatro_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
+scale = Scale(root, from_=0, to=179, command=cinco_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
-scale = Scale(root, from_=0, to=179, command=w_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
+scale = Scale(root, from_=0, to=179, command=seis_axis,
+              width=10, length=200, orient=HORIZONTAL)
+scale.pack(anchor=CENTER)
 
-
-scale = Scale(root, from_=0, to=179, command=q_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
-
-scale = Scale(root, from_=0, to=179, command=r_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
-
-
-scale = Scale(root, from_=0, to=179, command=s_axis, width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)  # Coloca o Scale na janela
-
-# Cria um objeto botão
 b = Button(root, text='Exit', command=sair)
-b.pack()  # Coloca o botão na janela
+b.pack()
 
-root.mainloop()  # Coloca o programa em execução
+root.mainloop()

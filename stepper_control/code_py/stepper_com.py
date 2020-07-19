@@ -23,10 +23,14 @@ time.sleep(3)
 
 
 # Funcão que envia o valor do slide X para a porta serial
-def x_axis(valor):
+def horario():
     ser.write('x')
-    # Converte valor de str para int e de int para char ( byte )
-    ser.write(chr(int(valor)))
+
+# Funcão que envia o valor do slide X para a porta serial
+
+
+def antihorario():
+    ser.write(chr(int(2)))
 
 
 def sair():
@@ -42,10 +46,15 @@ def sair():
 root = Tk()
 root.title("Servo Motor Arduino Control")
 root.geometry("280x280")
-scale = Scale(root, from_=0, to=179, command=x_axis,
-              width=9, length=179, orient=HORIZONTAL)
-scale.pack(anchor=CENTER)
-b = Button(root, text='Exit', command=sair)
+
+a = Button(root, text='EXIT', command=sair)
+a.pack()  # Coloca o botão na janela
+
+b = Button(root, text='Horario', command=horario)
 b.pack()  # Coloca o botão na janela
+
+c = Button(root, text='AntiHorario', command=antihorario)
+c.pack()  # Coloca o botão na janela
+
 
 root.mainloop()  # Coloca o programa em execução
